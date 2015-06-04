@@ -12,7 +12,7 @@ class DealCellTableViewCell: UITableViewCell {
     @IBOutlet weak var dealDescription: UILabel!
     @IBOutlet weak var dealTitle: UILabel!
     @IBOutlet weak var dealImage: UIImageView!
-    
+    @IBOutlet weak var imgView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

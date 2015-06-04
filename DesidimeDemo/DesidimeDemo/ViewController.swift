@@ -38,8 +38,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         popularTblWidth.constant = self.view.frame.width - 20
         popularBtnWidth.constant = self.view.frame.width / 2
         topBtnWidth.constant = self.view.frame.width / 2
-
-        //fetchPopularDeals()
+        topDealsBtn.tintColor = UIColor.whiteColor()
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
         var rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
         leftSwipe.direction = .Left
@@ -47,10 +46,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         view.addGestureRecognizer(leftSwipe)
         view.addGestureRecognizer(rightSwipe)
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        //popularTable.center = CGPointMake(popularTable.center.x + popularTable.frame.width, popularTable.center.y)
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,9 +73,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
         
         cell.dealTitle.text = deal.title  as String
-        //cell.dealDescription.text = String(htmlEncodedString: deal.deal_detail as String)
-       // cell.dealDescription.text = deal.deal_detail as String
         cell.dealDescription.text = html2String(deal.deal_detail as String)
+        cell.imgView.layer.borderColor = UIColor(red:204/255.0, green:204/255.0, blue:204/255.0, alpha:1).CGColor
+
         cell.dealImage?.image = UIImage(named: "default_deal.png")
         
         // If this image is already cached, don't re-download
@@ -105,7 +100,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     dispatch_async(dispatch_get_main_queue(), {
                         if var cellToUpdate  = tableView.cellForRowAtIndexPath(indexPath) as? DealCellTableViewCell {
                             cellToUpdate.dealImage?.image = image
-                            //cellToUpdate.imageView?.frame = cell.dealImage.frame
                         }
                     })
                 }
@@ -150,11 +144,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     @IBAction func showTopDeals(sender: AnyObject) {
 
-        UIView.animateWithDuration(1 as NSTimeInterval, animations: {
+        UIView.animateWithDuration(0.7 as NSTimeInterval, animations: {
             self.mainView.center = CGPointMake(self.view.frame.width, self.mainView.center.y)
             }, completion: {
                 finished in
-                self.topDealsBtn.backgroundColor = UIColor(red:58/255.0, green:102/255.0, blue:200/255.0, alpha:1)
+                self.topDealsBtn.backgroundColor = UIColor(red:84/255.0, green:170/255.0, blue:255/255.0, alpha:1)
                 self.topDealsBtn.tintColor = UIColor.whiteColor()
                 self.popularDealsBTn.backgroundColor = UIColor.whiteColor()
                 self.popularDealsBTn.tintColor = UIColor.blackColor()
@@ -164,14 +158,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     @IBAction func showPopularDeals(sender: AnyObject) {
 
-        UIView.animateWithDuration(1 as NSTimeInterval, animations: {
+        UIView.animateWithDuration(0.7 as NSTimeInterval, animations: {
             self.mainView.center = CGPointMake(0, self.mainView.center.y)
             
             }, completion: {
                 finished in
                 self.topDealsBtn.backgroundColor = UIColor.whiteColor()
                 self.topDealsBtn.tintColor = UIColor.blackColor()
-                self.popularDealsBTn.backgroundColor = UIColor(red:58/255.0, green:102/255.0, blue:200/255.0, alpha:1)
+                self.popularDealsBTn.backgroundColor = UIColor(red:84/255.0, green:170/255.0, blue:255/255.0, alpha:1)
                 self.popularDealsBTn.tintColor = UIColor.whiteColor()
             
         })
@@ -198,7 +192,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     Called when the response is received.
     */
     func didReceiveResponse(responseDict : NSDictionary){
-        //println(responseDict)
         if(currentFetch == "top"){
             println("top")
             topDeals = responseDict["deals"] as! NSMutableArray
