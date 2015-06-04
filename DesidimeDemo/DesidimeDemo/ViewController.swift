@@ -19,7 +19,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var popularBtnWidth: NSLayoutConstraint!
     @IBOutlet weak var topBtnWidth: NSLayoutConstraint!
     @IBOutlet weak var popularTblWidth: NSLayoutConstraint!
-    
     @IBOutlet weak var topDealsBtn: UIButton!
     
     var commonUtil : CommonUtil  = CommonUtil()
@@ -131,6 +130,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         return 5
     }
     
+    /*-- Swipe Handlers --*/
     func handleSwipes(sender:UISwipeGestureRecognizer) {
         if (sender.direction == .Left) {
             showPopularDeals(sender)
@@ -140,7 +140,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             showTopDeals(sender)
         }
     }
-    
     
     @IBAction func showTopDeals(sender: AnyObject) {
 
@@ -215,6 +214,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         alert.message = "Request could not be completed due to network issues"
         alert.addButtonWithTitle("Ok")
         alert.show()
+        commonUtil.hideActivityIndicator(self.view)
     }
     
     /**
@@ -227,6 +227,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             alert.message = "Request is not authorized"
             alert.addButtonWithTitle("Ok")
             alert.show()
+            commonUtil.hideActivityIndicator(self.view)
         }
     }
     

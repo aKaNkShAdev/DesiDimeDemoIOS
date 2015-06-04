@@ -10,7 +10,9 @@ import UIKit
 
 class ObjectBuilder: NSObject {
    
-    
+    /*
+        Parses the JSON received from response into the object
+    */
     func objectsFromJSON(data : NSData,jsonName : NSString,error :  NSErrorPointer) -> NSDictionary{
         var jsonObject: NSDictionary = NSDictionary()
         var objects : NSMutableArray = NSMutableArray()

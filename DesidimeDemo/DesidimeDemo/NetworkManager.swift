@@ -14,12 +14,21 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
     var responseData : NSMutableData?
     var jsonName : NSString =  ""
     var objectBuilder : ObjectBuilder = ObjectBuilder()
-
+    var reachability :Reachability = Reachability()
     
+    /*
+        Fetch data through the network
+    */
     func fetchDataRequest (request : NSURLRequest,jsonName : NSString){
         responseData = NSMutableData()
-        self.jsonName = jsonName
-        var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        if(reachability.isConnectedToNetwork()){
+            self.jsonName = jsonName
+            var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        } else {
+            var error : NSError = NSError()
+            self.delegate?.requestFailedWithError(error)
+        }
+
         
     }
     
@@ -38,9 +47,10 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
         return inputString
     }
     
+    /* --- NSURLCONNECTIONDATADELAGATE METHODS --- */
+
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse)
     { //It says the response started coming
-        NSLog("didReceiveResponse :: \(response.MIMEType)")
         var httpResponse :NSHTTPURLResponse = response as! NSHTTPURLResponse
         var code : Int = httpResponse.statusCode
         if(code != 200){
@@ -52,7 +62,6 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
     
     func connection(connection: NSURLConnection, didReceiveData _data: NSData)
     { //This will be called again and again until you get the full response
-        NSLog("didReceiveData")
         // Appending data
         self.responseData!.appendData(_data)
     }
@@ -60,7 +69,6 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
     func connectionDidFinishLoading(connection: NSURLConnection)
     {
         // This will be called when the data loading is finished i.e. there is no data left to be received and now you can process the data.
-        NSLog("connectionDidFinishLoading")
         var responseStr:NSString = NSString(data:responseData!, encoding:NSUTF8StringEncoding)!
         var modifiedStr = self.stringByRemovingControlCharacters(responseStr)
         var inputData :NSData = modifiedStr.dataUsingEncoding(NSUTF8StringEncoding)!
@@ -72,7 +80,7 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
     }
     
     /**
-    Called when the response is received.
+        Called when the response is received.
     */
     func didReceiveResponse(objectNotation : NSData, jsonName : NSString){
         var localErr : NSError?
@@ -84,7 +92,7 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
         }    }
     
     /**
-    Called when the error is received.
+        Called when the error is received.
     */
     func requestFailedWithError(error : NSError){
         self.delegate?.requestFailedWithError(error)
@@ -96,13 +104,6 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
     func didReceiveResponseCode(response : NSHTTPURLResponse){
         self.delegate?.didReceiveResponseCode(response)
     }
-   /* func hasConnectivity() -> Bool {
-        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
-        let networkStatus: Int = reachability.currentReachabilityStatus().value
-        return networkStatus != 0
-    }*/
-    
-    
 }
 
 

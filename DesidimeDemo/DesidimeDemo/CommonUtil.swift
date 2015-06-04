@@ -9,11 +9,7 @@
 import UIKit
 
 class CommonUtil: NSObject {
-   
-    
-    
-    
-    
+
     var container: UIView = UIView()
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -68,21 +64,5 @@ class CommonUtil: NSObject {
         let blue = CGFloat(rgbValue & 0xFF)/256.0
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
-    
-    func getImageFromURL(var path :String)-> UIImage{
-        let url = NSURL(string : path)
-        if(url != nil){
-            let data = NSData(contentsOfURL: url!)
-            if(data != nil){
-                return UIImage(data: data!)!
-            } else {
-                return UIImage(named: "default-deal.png")!
-            }
-        } else {
-            return UIImage(named: "default-deal.png")!
-        }
-        
-    }
-    
     
 }

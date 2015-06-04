@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/*
+    Removes the HTML entities from a string
+*/
 func html2String(html:String) -> String {
     let regex:NSRegularExpression  = NSRegularExpression(
         pattern: "<.*?>",

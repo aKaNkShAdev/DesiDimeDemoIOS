@@ -15,6 +15,7 @@
 		382F206A1B1E2E6E006AB39A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382F20681B1E2E6E006AB39A /* LaunchScreen.xib */; };
 		382F20761B1E2E6E006AB39A /* DesidimeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F20751B1E2E6E006AB39A /* DesidimeDemoTests.swift */; };
 		382F20841B1E3937006AB39A /* DealCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F20831B1E3937006AB39A /* DealCellTableViewCell.swift */; };
+		387DC25D1B20E4BC0024222F /* desidime-logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 387DC25C1B20E4BC0024222F /* desidime-logo.jpeg */; };
 		55E408801B1F741A00F783DB /* ObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E4087F1B1F741A00F783DB /* ObjectBuilder.swift */; };
 		55E408821B1F743700F783DB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E408811B1F743700F783DB /* NetworkManager.swift */; };
 		55E408851B1F74A700F783DB /* Deal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E408841B1F74A700F783DB /* Deal.swift */; };
@@ -23,7 +24,6 @@
 		82C22D311B1F8ECF0091C82D /* default_deal.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C22D301B1F8ECF0091C82D /* default_deal.png */; };
 		82C833371B1FAE5A0012A975 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C833361B1FAE5A0012A975 /* StringUtil.swift */; };
 		82ED2EDB1B20483600EA0DCC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED2EDA1B20483600EA0DCC /* Reachability.swift */; };
-		82ED2EEA1B2099B000EA0DCC /* desidime-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ED2EE91B2099B000EA0DCC /* desidime-logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +49,7 @@
 		382F20741B1E2E6E006AB39A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382F20751B1E2E6E006AB39A /* DesidimeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesidimeDemoTests.swift; sourceTree = "<group>"; };
 		382F20831B1E3937006AB39A /* DealCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealCellTableViewCell.swift; sourceTree = "<group>"; };
+		387DC25C1B20E4BC0024222F /* desidime-logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "desidime-logo.jpeg"; sourceTree = "<group>"; };
 		55E4087F1B1F741A00F783DB /* ObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectBuilder.swift; sourceTree = "<group>"; };
 		55E408811B1F743700F783DB /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		55E408841B1F74A700F783DB /* Deal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deal.swift; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		82C22D301B1F8ECF0091C82D /* default_deal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_deal.png; sourceTree = SOURCE_ROOT; };
 		82C833361B1FAE5A0012A975 /* StringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		82ED2EDA1B20483600EA0DCC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		82ED2EE91B2099B000EA0DCC /* desidime-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "desidime-logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,6 @@
 		382F20591B1E2E6D006AB39A /* DesidimeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				82C22D301B1F8ECF0091C82D /* default_deal.png */,
 				55E408861B1F784000F783DB /* Util */,
 				55E408831B1F749100F783DB /* Objects */,
 				55E4087E1B1F734700F783DB /* Services */,
@@ -144,7 +143,7 @@
 		382F207F1B1E32A8006AB39A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				82ED2EE91B2099B000EA0DCC /* desidime-logo.png */,
+				387DC25C1B20E4BC0024222F /* desidime-logo.jpeg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -170,6 +169,7 @@
 		55E408831B1F749100F783DB /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				82C22D301B1F8ECF0091C82D /* default_deal.png */,
 				55E408841B1F74A700F783DB /* Deal.swift */,
 			);
 			name = Objects;
@@ -270,7 +270,7 @@
 				382F206A1B1E2E6E006AB39A /* LaunchScreen.xib in Resources */,
 				382F20671B1E2E6E006AB39A /* Images.xcassets in Resources */,
 				82C22D311B1F8ECF0091C82D /* default_deal.png in Resources */,
-				82ED2EEA1B2099B000EA0DCC /* desidime-logo.png in Resources */,
+				387DC25D1B20E4BC0024222F /* desidime-logo.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
