@@ -63,7 +63,6 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
         NSLog("connectionDidFinishLoading")
         var responseStr:NSString = NSString(data:responseData!, encoding:NSUTF8StringEncoding)!
         var modifiedStr = self.stringByRemovingControlCharacters(responseStr)
-        println(modifiedStr)
         var inputData :NSData = modifiedStr.dataUsingEncoding(NSUTF8StringEncoding)!
         self.didReceiveResponse(inputData, jsonName: jsonName)
     }

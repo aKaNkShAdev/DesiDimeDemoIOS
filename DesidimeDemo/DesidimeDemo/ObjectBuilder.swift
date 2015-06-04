@@ -28,8 +28,7 @@ class ObjectBuilder: NSObject {
                         feedObj.setValue(feed.objectForKey(key), forKey: key as! String)
                     }
                 }
-                println("Property: \"\(feedObj.id)\"")
-                objects.addObject(feedObj)
+               objects.addObject(feedObj)
             }
             var feedDict : NSDictionary = NSDictionary(object: objects, forKey: "deals")
             return feedDict
@@ -39,7 +38,6 @@ class ObjectBuilder: NSObject {
             var jsonObject: NSDictionary = NSDictionary()
             jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &error) as! NSDictionary
             println(error)
-            NSLog("%@",jsonObject)
             return jsonObject
             
         }

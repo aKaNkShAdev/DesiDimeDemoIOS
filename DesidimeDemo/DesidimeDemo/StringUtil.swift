@@ -9,18 +9,17 @@
 import Foundation
 import UIKit
 
-extension String {
-    init(htmlEncodedString: String) {
-        let encodedData = htmlEncodedString.dataUsingEncoding(NSUTF8StringEncoding)!
-        let attributedOptions : [String: AnyObject] = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
-        ]
-        let attributedString = NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil, error: nil)!
-        self.init(attributedString.string)
-    }
+func html2String(html:String) -> String {
+    let regex:NSRegularExpression  = NSRegularExpression(
+        pattern: "<.*?>",
+        options: NSRegularExpressionOptions.CaseInsensitive,
+        error: nil)!
+    
+    
+    let range = NSMakeRange(0, count(html))
+    let htmlLessString :String = regex.stringByReplacingMatchesInString(html,
+        options: NSMatchingOptions.allZeros,
+        range:range ,
+        withTemplate: "")
+    return htmlLessString
 }
-
-
-let encodedString = "The Weeknd <em>King Of The Fall</em>"
-let decodedString = String(htmlEncodedString: encodedString)

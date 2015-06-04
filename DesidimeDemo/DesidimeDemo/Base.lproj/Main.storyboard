@@ -212,8 +212,13 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g7-2D-xhc">
-                                <rect key="frame" x="188" y="52" width="187" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g7-2D-xhc">
+                                <rect key="frame" x="188" y="50" width="187" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aOT-ij-5Ax"/>
+                                    <constraint firstAttribute="width" constant="187" id="pUo-AL-lNE"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Popular">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -221,9 +226,14 @@
                                     <action selector="showPopularDeals:" destination="BYZ-38-t0r" eventType="touchDown" id="oL4-ky-0Xi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0E-Dj-BKy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0E-Dj-BKy">
                                 <rect key="frame" x="0.0" y="50" width="187" height="50"/>
-                                <color key="backgroundColor" red="0.058823529409999999" green="0.46274509800000002" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187" id="LOq-SA-QtD"/>
+                                    <constraint firstAttribute="height" constant="50" id="s9G-6D-gdC"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Top">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -235,20 +245,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9g7-2D-xhc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="2va-Dr-mQA"/>
                             <constraint firstAttribute="trailing" secondItem="9Gu-So-sVY" secondAttribute="trailing" id="3hr-Ju-Tq4"/>
                             <constraint firstItem="9Gu-So-sVY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8PQ-kI-Ygf"/>
                             <constraint firstItem="9Gu-So-sVY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="R9S-j0-dZi"/>
                             <constraint firstItem="9eb-NW-qBh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="a9u-9P-WGe"/>
                             <constraint firstAttribute="trailing" secondItem="9eb-NW-qBh" secondAttribute="trailing" id="gAt-6b-oI7"/>
+                            <constraint firstAttribute="trailing" secondItem="9g7-2D-xhc" secondAttribute="trailing" id="mdY-f9-ZFa"/>
                             <constraint firstAttribute="trailing" secondItem="9eb-NW-qBh" secondAttribute="trailing" constant="-375" id="nvN-qQ-4ou"/>
                             <constraint firstItem="9eb-NW-qBh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="qeF-pU-9IM"/>
                             <constraint firstAttribute="bottom" secondItem="9eb-NW-qBh" secondAttribute="bottom" id="vCs-jQ-B6j"/>
+                            <constraint firstItem="V0E-Dj-BKy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vlM-WV-QjD"/>
+                            <constraint firstItem="V0E-Dj-BKy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="xAx-Jw-kQg"/>
                             <constraint firstItem="9eb-NW-qBh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yrR-EU-e25"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="a9u-9P-WGe"/>
                                 <exclude reference="gAt-6b-oI7"/>
+                                <exclude reference="nvN-qQ-4ou"/>
                             </mask>
                         </variation>
                     </view>
@@ -256,8 +271,13 @@
                     <connections>
                         <outlet property="dealTable" destination="5QF-DX-aLD" id="UW6-eq-fvZ"/>
                         <outlet property="mainView" destination="9eb-NW-qBh" id="kdt-1F-TVS"/>
+                        <outlet property="mainViewWidth" destination="QrW-gy-iBG" id="Tsy-k8-91z"/>
+                        <outlet property="popularBtnWidth" destination="pUo-AL-lNE" id="xwu-g2-oa2"/>
+                        <outlet property="popularDealsBTn" destination="9g7-2D-xhc" id="ph7-Ps-djg"/>
                         <outlet property="popularTable" destination="WV3-22-YJ2" id="ca0-lT-l8h"/>
-                        <outletCollection property="popularTableWidth" destination="WBI-WQ-XkU" collectionClass="NSMutableArray" id="yyw-OM-ena"/>
+                        <outlet property="popularTblWidth" destination="Ih7-12-S9k" id="4Kb-5f-qhJ"/>
+                        <outlet property="topBtnWidth" destination="LOq-SA-QtD" id="QL2-dN-hcR"/>
+                        <outlet property="topDealsBtn" destination="V0E-Dj-BKy" id="DqE-W5-DYI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

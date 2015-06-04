@@ -13,8 +13,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //IBOutlets
     @IBOutlet weak var dealTable: UITableView!
     @IBOutlet weak var popularTable: UITableView!
-    @IBOutlet var popularTableWidth: [NSLayoutConstraint]!
     @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var mainViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var popularDealsBTn: UIButton!
+    @IBOutlet weak var popularBtnWidth: NSLayoutConstraint!
+    @IBOutlet weak var topBtnWidth: NSLayoutConstraint!
+    @IBOutlet weak var popularTblWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var topDealsBtn: UIButton!
     
     var commonUtil : CommonUtil  = CommonUtil()
     var currentFetch = ""
@@ -28,6 +34,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         networkManager.delegate = self
         commonUtil.showActivityIndicator(self.view)
         fetchTopDeals()
+        mainViewWidth.constant = self.view.frame.width * 2
+        popularTblWidth.constant = self.view.frame.width - 20
+        popularBtnWidth.constant = self.view.frame.width / 2
+        topBtnWidth.constant = self.view.frame.width / 2
+
         //fetchPopularDeals()
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
         var rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
@@ -67,7 +78,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
         
         cell.dealTitle.text = deal.title  as String
-        cell.dealDescription.text = String(htmlEncodedString: deal.deal_detail as String)
+        //cell.dealDescription.text = String(htmlEncodedString: deal.deal_detail as String)
+       // cell.dealDescription.text = deal.deal_detail as String
+        cell.dealDescription.text = html2String(deal.deal_detail as String)
         cell.dealImage?.image = UIImage(named: "default_deal.png")
         
         // If this image is already cached, don't re-download
@@ -106,6 +119,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
     
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         if(tableView == dealTable){
@@ -135,21 +149,31 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     
     @IBAction func showTopDeals(sender: AnyObject) {
-        
+
         UIView.animateWithDuration(1 as NSTimeInterval, animations: {
             self.mainView.center = CGPointMake(self.view.frame.width, self.mainView.center.y)
             }, completion: {
                 finished in
+                self.topDealsBtn.backgroundColor = UIColor(red:58/255.0, green:102/255.0, blue:200/255.0, alpha:1)
+                self.topDealsBtn.tintColor = UIColor.whiteColor()
+                self.popularDealsBTn.backgroundColor = UIColor.whiteColor()
+                self.popularDealsBTn.tintColor = UIColor.blackColor()
         })
     }
     
     
     @IBAction func showPopularDeals(sender: AnyObject) {
+
         UIView.animateWithDuration(1 as NSTimeInterval, animations: {
             self.mainView.center = CGPointMake(0, self.mainView.center.y)
             
             }, completion: {
                 finished in
+                self.topDealsBtn.backgroundColor = UIColor.whiteColor()
+                self.topDealsBtn.tintColor = UIColor.blackColor()
+                self.popularDealsBTn.backgroundColor = UIColor(red:58/255.0, green:102/255.0, blue:200/255.0, alpha:1)
+                self.popularDealsBTn.tintColor = UIColor.whiteColor()
+            
         })
 
     }
