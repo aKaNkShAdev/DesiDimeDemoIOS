@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,11 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eb-NW-qBh" userLabel="mainView">
-                                <rect key="frame" x="0.0" y="50" width="750" height="617"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9eb-NW-qBh" userLabel="mainView">
+                                <rect key="frame" x="0.0" y="100" width="750" height="617"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5QF-DX-aLD" userLabel="top">
-                                        <rect key="frame" x="10" y="60" width="355" height="557"/>
+                                        <rect key="frame" x="10" y="10" width="355" height="557"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="DealCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="DealCell" id="vxP-53-RHW" customClass="DealCellTableViewCell" customModule="DesidimeDemo" customModuleProvider="target">
@@ -158,18 +158,6 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="hbi-19-XoT"/>
                                         </connections>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0E-Dj-BKy">
-                                        <rect key="frame" x="0.0" y="15" width="187" height="30"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g7-2D-xhc">
-                                        <rect key="frame" x="188" y="15" width="187" height="30"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.88284011994949496" green="0.88284011994949496" blue="0.88284011994949496" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -181,10 +169,10 @@
                                     <constraint firstAttribute="trailing" secondItem="WV3-22-YJ2" secondAttribute="trailing" constant="10" id="WBI-WQ-XkU"/>
                                     <constraint firstAttribute="trailing" secondItem="5QF-DX-aLD" secondAttribute="trailing" constant="10" id="Wyl-Kx-DIz"/>
                                     <constraint firstItem="WV3-22-YJ2" firstAttribute="leading" secondItem="5QF-DX-aLD" secondAttribute="trailing" constant="10" id="XKQ-mg-YwM"/>
-                                    <constraint firstItem="5QF-DX-aLD" firstAttribute="top" secondItem="9eb-NW-qBh" secondAttribute="top" constant="60" id="YrA-By-Dpo"/>
+                                    <constraint firstItem="5QF-DX-aLD" firstAttribute="top" secondItem="9eb-NW-qBh" secondAttribute="top" constant="10" id="YrA-By-Dpo"/>
                                     <constraint firstAttribute="trailing" secondItem="WV3-22-YJ2" secondAttribute="trailing" constant="10" id="ZTC-Ny-oqJ"/>
                                     <constraint firstItem="WV3-22-YJ2" firstAttribute="leading" secondItem="5QF-DX-aLD" secondAttribute="trailing" constant="20" id="b9n-e1-4tH"/>
-                                    <constraint firstItem="WV3-22-YJ2" firstAttribute="top" secondItem="9eb-NW-qBh" secondAttribute="top" constant="60" id="c4m-9q-QaM"/>
+                                    <constraint firstItem="WV3-22-YJ2" firstAttribute="top" secondItem="9eb-NW-qBh" secondAttribute="top" constant="10" id="c4m-9q-QaM"/>
                                     <constraint firstItem="WV3-22-YJ2" firstAttribute="leading" secondItem="9eb-NW-qBh" secondAttribute="leading" constant="10" id="uHS-WJ-b7x"/>
                                 </constraints>
                                 <variation key="default">
@@ -224,6 +212,26 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g7-2D-xhc">
+                                <rect key="frame" x="188" y="52" width="187" height="30"/>
+                                <state key="normal" title="Popular">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPopularDeals:" destination="BYZ-38-t0r" eventType="touchDown" id="oL4-ky-0Xi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0E-Dj-BKy">
+                                <rect key="frame" x="0.0" y="50" width="187" height="50"/>
+                                <color key="backgroundColor" red="0.058823529409999999" green="0.46274509800000002" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Top">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showTopDeals:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I4K-tX-wYQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -233,7 +241,7 @@
                             <constraint firstItem="9eb-NW-qBh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="a9u-9P-WGe"/>
                             <constraint firstAttribute="trailing" secondItem="9eb-NW-qBh" secondAttribute="trailing" id="gAt-6b-oI7"/>
                             <constraint firstAttribute="trailing" secondItem="9eb-NW-qBh" secondAttribute="trailing" constant="-375" id="nvN-qQ-4ou"/>
-                            <constraint firstItem="9eb-NW-qBh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="qeF-pU-9IM"/>
+                            <constraint firstItem="9eb-NW-qBh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="qeF-pU-9IM"/>
                             <constraint firstAttribute="bottom" secondItem="9eb-NW-qBh" secondAttribute="bottom" id="vCs-jQ-B6j"/>
                             <constraint firstItem="9eb-NW-qBh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yrR-EU-e25"/>
                         </constraints>

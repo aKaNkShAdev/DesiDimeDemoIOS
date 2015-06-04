@@ -9,7 +9,7 @@
 import UIKit
 
 class Deal: NSObject {
-    var id : Int64 = 0
+    var id : Int = 0
     var title :NSString = ""
     var image_thumb : NSString = ""
     var deal_detail : NSString = ""

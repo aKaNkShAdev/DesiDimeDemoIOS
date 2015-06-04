@@ -21,11 +21,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var networkManager : NetworkManager = NetworkManager()
     var topDeals : NSMutableArray = NSMutableArray()
     var popularDeals : NSMutableArray = NSMutableArray()
+    var imageCache = [String:UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         networkManager.delegate = self
-        //commonUtil.showActivityIndicator(self.view)
+        commonUtil.showActivityIndicator(self.view)
         fetchTopDeals()
         //fetchPopularDeals()
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
@@ -53,27 +54,55 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        var cell : DealCellTableViewCell = DealCellTableViewCell()
+        var deal : Deal = Deal()
+
         if(tableView == dealTable){
-            var cell : DealCellTableViewCell = DealCellTableViewCell()
-            
             cell = tableView.dequeueReusableCellWithIdentifier("DealCell", forIndexPath: indexPath) as! DealCellTableViewCell
-            cell.dealTitle.text = "top deal"
-            var deal : Deal = topDeals.objectAtIndex(indexPath.section) as! Deal
-            cell.dealTitle.text = deal.title  as String
-            cell.dealDescription.text = String(htmlEncodedString: deal.deal_detail as String)
-            cell.dealImage?.image = commonUtil.getImageFromURL(deal.image_thumb as String)
-            return cell;
+            deal = topDeals.objectAtIndex(indexPath.section) as! Deal
+
         } else {
-            var cell : DealCellTableViewCell = DealCellTableViewCell()
-            
             cell = tableView.dequeueReusableCellWithIdentifier("PopularDealCell", forIndexPath: indexPath) as! DealCellTableViewCell
-            cell.dealTitle.text = "popular"
-            var deal : Deal = popularDeals.objectAtIndex(indexPath.section) as! Deal
-            cell.dealTitle.text = deal.title  as String
-            cell.dealDescription.text = String(htmlEncodedString: deal.deal_detail as String)
-            cell.dealImage?.image = commonUtil.getImageFromURL(deal.image_thumb as String)
-            return cell;
+            deal = popularDeals.objectAtIndex(indexPath.section) as! Deal
         }
+        
+        cell.dealTitle.text = deal.title  as String
+        cell.dealDescription.text = String(htmlEncodedString: deal.deal_detail as String)
+        cell.dealImage?.image = UIImage(named: "default_deal.png")
+        
+        // If this image is already cached, don't re-download
+        var urlString = deal.image_thumb as String
+        var imgURL = NSURL(string: urlString)
+        
+        if let img = imageCache[deal.image_thumb as String] {
+            cell.dealImage?.image = img
+        }
+        else {
+            // The image isn't cached, download the img data
+            // We should perform this in a background thread
+            let request: NSURLRequest = NSURLRequest(URL: imgURL!)
+            let mainQueue = NSOperationQueue.mainQueue()
+            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                if error == nil {
+                    // Convert the downloaded data in to a UIImage object
+                    let image = UIImage(data: data)
+                    // Store the image in to our cache
+                    self.imageCache[urlString] = image
+                    // Update the cell
+                    dispatch_async(dispatch_get_main_queue(), {
+                        if var cellToUpdate  = tableView.cellForRowAtIndexPath(indexPath) as? DealCellTableViewCell {
+                            cellToUpdate.dealImage?.image = image
+                            //cellToUpdate.imageView?.frame = cell.dealImage.frame
+                        }
+                    })
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+        return cell;
+
         
     }
     
@@ -96,24 +125,35 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func handleSwipes(sender:UISwipeGestureRecognizer) {
         if (sender.direction == .Left) {
-            UIView.animateWithDuration(1 as NSTimeInterval, animations: {
-                self.mainView.center = CGPointMake(0, self.mainView.center.y)
-                
-                }, completion: {
-                    finished in
-            })
+            showPopularDeals(sender)
         }
         
         if (sender.direction == .Right) {
-            UIView.animateWithDuration(1 as NSTimeInterval, animations: {
-                self.mainView.center = CGPointMake(self.view.frame.width, self.mainView.center.y)
-                }, completion: {
-                    finished in
-            })
+            showTopDeals(sender)
         }
     }
     
     
+    @IBAction func showTopDeals(sender: AnyObject) {
+        
+        UIView.animateWithDuration(1 as NSTimeInterval, animations: {
+            self.mainView.center = CGPointMake(self.view.frame.width, self.mainView.center.y)
+            }, completion: {
+                finished in
+        })
+    }
+    
+    
+    @IBAction func showPopularDeals(sender: AnyObject) {
+        UIView.animateWithDuration(1 as NSTimeInterval, animations: {
+            self.mainView.center = CGPointMake(0, self.mainView.center.y)
+            
+            }, completion: {
+                finished in
+        })
+
+    }
+
     func fetchTopDeals(){
         currentFetch = "top"
         var url : NSString = NSString(string: topDealsURL)
@@ -135,7 +175,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     */
     func didReceiveResponse(responseDict : NSDictionary){
         //println(responseDict)
-        //commonUtil.hideActivityIndicator(self.view)
         if(currentFetch == "top"){
             println("top")
             topDeals = responseDict["deals"] as! NSMutableArray
@@ -145,6 +184,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             println("popular")
             popularDeals = responseDict["deals"] as! NSMutableArray
             popularTable.reloadData()
+            commonUtil.hideActivityIndicator(self.view)
         }
         
     }
@@ -153,14 +193,33 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     Called when the error is received.
     */
     func requestFailedWithError(error : NSError){
-        
+        let alert = UIAlertView()
+        alert.title = "Alert"
+        alert.message = "Request could not be completed due to network issues"
+        alert.addButtonWithTitle("Ok")
+        alert.show()
     }
     
     /**
     Handles the response according to the response code
     */
     func didReceiveResponseCode(response : NSHTTPURLResponse){
-        
+        if(response.statusCode != 200){
+            let alert = UIAlertView()
+            alert.title = "Alert"
+            alert.message = "Request is not authorized"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+        }
+    }
+    
+    //Making the default layout as Potrait
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
     }
     
 }

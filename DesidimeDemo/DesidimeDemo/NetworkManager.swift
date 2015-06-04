@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelegate {
     var delegate: NetworkManagerDelegate?
@@ -96,7 +97,11 @@ class NetworkManager: NSObject,NSURLConnectionDataDelegate,NSURLConnectionDelega
     func didReceiveResponseCode(response : NSHTTPURLResponse){
         self.delegate?.didReceiveResponseCode(response)
     }
-
+   /* func hasConnectivity() -> Bool {
+        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
+        let networkStatus: Int = reachability.currentReachabilityStatus().value
+        return networkStatus != 0
+    }*/
     
     
 }

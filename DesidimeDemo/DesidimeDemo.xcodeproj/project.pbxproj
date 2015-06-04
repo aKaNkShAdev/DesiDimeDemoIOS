@@ -23,6 +23,8 @@
 		55E4088A1B1F793500F783DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E408891B1F793500F783DB /* Constants.swift */; };
 		82C22D311B1F8ECF0091C82D /* default_deal.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C22D301B1F8ECF0091C82D /* default_deal.png */; };
 		82C833371B1FAE5A0012A975 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C833361B1FAE5A0012A975 /* StringUtil.swift */; };
+		82ED2ED91B203AE300EA0DCC /* global-nav-wish.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ED2ED81B203AE300EA0DCC /* global-nav-wish.png */; };
+		82ED2EDB1B20483600EA0DCC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED2EDA1B20483600EA0DCC /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		55E408891B1F793500F783DB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		82C22D301B1F8ECF0091C82D /* default_deal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_deal.png; sourceTree = SOURCE_ROOT; };
 		82C833361B1FAE5A0012A975 /* StringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
+		82ED2ED81B203AE300EA0DCC /* global-nav-wish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-nav-wish.png"; sourceTree = "<group>"; };
+		82ED2EDA1B20483600EA0DCC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 		382F20591B1E2E6D006AB39A /* DesidimeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				82ED2ED81B203AE300EA0DCC /* global-nav-wish.png */,
 				82C22D301B1F8ECF0091C82D /* default_deal.png */,
 				55E408861B1F784000F783DB /* Util */,
 				55E408831B1F749100F783DB /* Objects */,
@@ -160,6 +165,7 @@
 			children = (
 				55E4087F1B1F741A00F783DB /* ObjectBuilder.swift */,
 				55E408811B1F743700F783DB /* NetworkManager.swift */,
+				82ED2EDA1B20483600EA0DCC /* Reachability.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				382F20811B1E32B9006AB39A /* desidime-logo.png in Resources */,
 				382F20651B1E2E6E006AB39A /* Main.storyboard in Resources */,
 				382F206A1B1E2E6E006AB39A /* LaunchScreen.xib in Resources */,
+				82ED2ED91B203AE300EA0DCC /* global-nav-wish.png in Resources */,
 				382F20671B1E2E6E006AB39A /* Images.xcassets in Resources */,
 				82C22D311B1F8ECF0091C82D /* default_deal.png in Resources */,
 			);
@@ -292,6 +299,7 @@
 				382F205D1B1E2E6D006AB39A /* AppDelegate.swift in Sources */,
 				55E408801B1F741A00F783DB /* ObjectBuilder.swift in Sources */,
 				82C833371B1FAE5A0012A975 /* StringUtil.swift in Sources */,
+				82ED2EDB1B20483600EA0DCC /* Reachability.swift in Sources */,
 				382F20841B1E3937006AB39A /* DealCellTableViewCell.swift in Sources */,
 				55E408851B1F74A700F783DB /* Deal.swift in Sources */,
 				55E4088A1B1F793500F783DB /* Constants.swift in Sources */,

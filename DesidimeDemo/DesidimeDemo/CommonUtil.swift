@@ -25,24 +25,23 @@ class CommonUtil: NSObject {
     @param uiView - add activity indicator to this view
     */
     func showActivityIndicator(uiView: UIView) {
-       container.frame = uiView.frame
+        container.frame = uiView.frame
         container.center = uiView.center
         container.backgroundColor = UIColorFromHex(0x000000, alpha: 0.5)
         
-       loadingView.frame = CGRectMake(0, 0, 80, 80)
+        loadingView.frame = CGRectMake(0, 0, 80, 80)
         loadingView.center = uiView.center
         loadingView.backgroundColor = UIColorFromHex(0x444444, alpha: 1)
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
-        container.hidden = false
-
+        
         activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2);
-        loadingView.addSubview(activityIndicator)
-        //container.addSubview(loadingView)
         
-        uiView.addSubview(loadingView)
+        loadingView.addSubview(activityIndicator)
+        container.addSubview(loadingView)
+        uiView.addSubview(container)
         activityIndicator.startAnimating()
     }
     
@@ -54,7 +53,7 @@ class CommonUtil: NSObject {
     */
     func hideActivityIndicator(uiView: UIView) {
         activityIndicator.stopAnimating()
-        loadingView.hidden = true
+        container.removeFromSuperview()
     }
     
     /*
